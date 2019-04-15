@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="../css/style.css">
+        {% block stylesheets %}<link rel="stylesheet" href="../css/bootstrap.css">{% endblock %}
+        <script src="../js/jquery.js" defer ></script>
+        <script src="../js/excel.js" defer ></script>
+        <script src="../js/filesaver.js" defer ></script>
+        <script src="../js/MakeExcel.js" defer ></script>
+        <script src="../js/main.js" defer ></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            {% block body %}{% endblock %}
+        </div>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

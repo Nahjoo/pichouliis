@@ -1,0 +1,41 @@
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td{
+    padding:  10px;
+    text-align: left;
+    border: solid 1px #ccc;
+}
+
+th{
+    color: wheat;
+    background-color: black;
+}
+
+@media only screen and (max-width: 1044px){
+
+    table, thead, tbody, tr, th ,td{
+        display: block;
+    }
+
+    td{
+        color: green;
+        padding-left: 150px;
+        position: relative;
+    }
+
+    td::before{
+        content: 'Salut';
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 130px;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+
+    }
+
+}

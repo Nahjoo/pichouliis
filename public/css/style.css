@@ -1,0 +1,31 @@
+#subarea{
+    display: none;
+}
+
+#planche{
+    display: none;
+}
+
+#amount{
+    display: none;
+}
+
+#preparation{
+    display: none;
+}
+
+#recolte{
+    display: none;
+}
+
+#couvert{
+    display: none;
+}
+
+#bachage{
+    display: none;
+}
+
+.titre{
+    text-align: center;
+}

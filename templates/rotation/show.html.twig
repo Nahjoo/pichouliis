@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rotation{% endblock %}
+
+{% block body %}
+    <h1></h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ rotation.name }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ rotation.date ? rotation.date|date('d/m/Y H:i:s') : '' }}</td>
+            </tr>
+             <tr>
+                <th>Zone</th>
+                <td>{{ rotation.zone }}</td>
+            </tr>
+            {% if rotation.subarea == null %}
+            {% else %}
+             <tr>
+                <th>Serre</th>
+                <td>{{ rotation.subarea }}</td>
+            </tr>
+            {% endif %}
+            {% if rotation.planche == null %}
+            {% else %}
+            <tr>
+                <th>Planche</th>
+                <td>{{ rotation.planche }}</td>
+            </tr>
+            {% endif %}
+             <tr>
+                <th>Legume</th>
+                <td>{{ rotation.legume }}</td>
+            </tr>
+            <tr>
+                <th>Variété</th>
+                <td>{{ rotation.variete }}</td>
+            </tr>
+            <tr>
+                <th>Tache</th>
+                <td>{{ rotation.tache }}</td>
+            </tr>
+            {% if rotation.choice == null %}
+            {% else %}
+            <tr>
+                <th>Choix</th>
+                <td>{{ rotation.choice }}</td>
+            </tr>
+            {% endif %}
+            {% if rotation.amount == null %}
+            {% else %}
+            <tr>
+                <th>Quantité</th>
+                <td>{{ rotation.amount }}</td>
+            </tr>
+            {% endif %}
+            {% if rotation.comment == null %}
+            <tr>
+                <th>Commentaire</th>
+                <td>Aucun commentaire</td>
+            </tr>
+            {% else %}
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ rotation.comment }}</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('rotation_index') }}">back to list</a>
+
+    <a href="{{ path('rotation_edit', {'id': rotation.id}) }}">edit</a>
+
+    {{ include('rotation/_delete_form.html.twig') }}
+{% endblock %}

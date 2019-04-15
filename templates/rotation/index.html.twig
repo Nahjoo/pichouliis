@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="../css/style-index.css">
+{% endblock %}
+{% block title %}Rotation index{% endblock %}
+
+{% block body %}
+    <h1 class="titre" >L'Air des Pichoulis</h1>
+
+    <table id="mytable" class="table table-triped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temps</th>
+                <th>Zone</th>
+                <th>Serre</th>
+                <th>Planche</th>
+                <th>Legume</th>
+                <th>Variete</th>
+                <th>Tache</th>
+                <th>Choix</th>
+                <th>Quantité</th>
+                <th>Commentaire</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rotation in rotations %}
+            <tr>
+                <td>{{ rotation.date ? rotation.date|date('d/m/Y H:i:s') : '' }}</td>
+                <td>{{ rotation.time }}</td>
+                <td>{{ rotation.zone }}</td>
+                {% if rotation.subarea == null %}
+                <td>x</td>
+                {% else %}
+                <td>{{ rotation.subarea }}</td>
+                {% endif %}
+                {% if rotation.planche == null %}
+                <td>x</td>
+                {% else %}
+                <td>{{ rotation.planche }}</td>
+                {% endif %}
+                <td>{{ rotation.legume }}</td>
+                <td>{{ rotation.variete }}</td>
+                <td>{{ rotation.tache }}</td>
+                {% if rotation.choice == null %}
+                <td>x</td>
+                {% else %}
+                <td>{{ rotation.choice }}</td>
+                {% endif %}
+                {% if rotation.amount == null %}
+                <td>x</td>
+                {% else %}
+                <td>{{ rotation.amount }}</td>
+                {% endif %}
+                {% if rotation.comment == null %}
+                <td>Aucun commentaire</td>
+                {% else %}
+                <td>{{ rotation.comment }}</td>
+                {% endif %}
+                <td>
+                    <a href="{{ path('rotation_show', {'id': rotation.id}) }}">show</a>
+                    <a href="{{ path('rotation_edit', {'id': rotation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('rotation_new') }}">Create new</a>
+    <button id="button-a" class="btn btn-primary" >Télécherger excel</button>
+    
+{% endblock %}

@@ -1,0 +1,78 @@
+#easy_admin:
+#    entities:
+#        # List the entity class name you want to manage
+#        - App\Entity\Product
+#        - App\Entity\Category
+#        - App\Entity\User
+
+easy_admin:
+   entities:
+        Zone:
+            class: App\Entity\Zone
+            form:
+                fields:
+                    - {property: 'Name'}
+
+        Planche:
+            class: App\Entity\Planche
+            form:
+                fields:
+                    - {property: 'Name'}
+                    - {property: 'zone'}
+                    - {property: 'subarea'}
+
+        Subarea:
+            class: App\Entity\Subarea
+            form:
+                fields:
+                    - {property: 'Name'}
+                    - {property: 'zone'}
+                    - {property: 'planche'}
+       
+       
+        Legume:
+            class: App\Entity\Legume
+            form:
+                fields:
+                    - {property: 'name'}
+                    - {property: 'variete'}
+
+        Tache:
+            class: App\Entity\Tache
+            form:
+                fields:
+                    - {property: 'name'}
+       
+    
+        Rotation:
+            class: App\Entity\Rotation
+            form:
+                fields:
+                    - {property: 'name'}
+                    - {property: 'date'}
+                    - {property: 'time'}
+                    - {property: 'zone'}
+                    - {property: 'subarea'}
+                    - {property: 'planche'}
+                    - {property: 'legume'}
+                    - {property: 'variete'}
+                    - {property: 'tache'}
+                    - {property: 'choice'}
+                    - {property: 'amount'}
+                    - {property: 'comment'}
+
+        Variete:
+            class: App\Entity\Variete
+            form:
+                fields:
+                    - {property: 'name'}
+                    - {property: 'legume'}
+
+        # User:
+        #     class: App\Entity\User
+        #     list:
+        #         actions:
+        #             - {name: 'edit', label: false}
+        #     form:
+        #         fields:
+        #             - {property: 'username'}
