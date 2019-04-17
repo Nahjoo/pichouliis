@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class RotationController extends AbstractController
 {
     /**
-     * @Route("/", name="rotation_index", methods={"GET"})
+     * @Route("/", name="rotation_index", methods={"GET", "POST"})
      */
     public function index(RotationRepository $rotationRepository): Response
     {

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'index.html.twig' %}
 
 {% block title %}Rotation{% endblock %}
 
@@ -74,8 +74,6 @@
     </table>
 
     <a href="{{ path('rotation_index') }}">back to list</a>
-
-    <a href="{{ path('rotation_edit', {'id': rotation.id}) }}">edit</a>
 
     {{ include('rotation/_delete_form.html.twig') }}
 {% endblock %}

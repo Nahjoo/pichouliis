@@ -1,0 +1,23 @@
+{% extends 'index.html.twig' %}
+{% block stylesheets %}
+<link rel="stylesheet" href="../public/css/bootstrap.css">
+{% endblock %}
+{% block body %}
+
+<div class="form-group">
+    {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+    <h1>Bienvenu dans l'application !</h1>
+    <form action="{{ path('rotation_index') }}">
+        <button type="submit">Commencer</button>
+    </form>
+    {% endif %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+    <form action="{{ path('fos_user_registration_register') }}">
+        <button type="submit">Inscription</button>
+    </form>
+    {% endif %}
+
+    
+</div>
+{% endblock %}

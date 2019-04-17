@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'index.html.twig' %}
 
 {% block stylesheets %}
 <script src="../js/stopwatch.js" defer ></script>
@@ -74,7 +74,7 @@
 
     <input type="text" name="chronotime" id="chronotime" value="0:00:00:00"/>
     <input type="button" name="startstop" id="startstop" value="start!" onClick="chronoStart()" />
-    <input type="button" name="reset"id="reset" value="reset!" onClick="chronoReset()" />
+    <input type="button" name="reset" id="reset" value="reset!" onClick="chronoReset()" />
 
     <button class="btn save" >{{ button_label|default('Save') }}</button>
     {{ form_end(form) }}

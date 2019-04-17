@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'index.html.twig' %}
 
 {% block stylesheets %}
 <link rel="stylesheet" href="../css/style-index.css">
@@ -61,7 +61,6 @@
                 {% endif %}
                 <td>
                     <a href="{{ path('rotation_show', {'id': rotation.id}) }}">show</a>
-                    <a href="{{ path('rotation_edit', {'id': rotation.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -73,6 +72,15 @@
     </table>
 
     <a href="{{ path('rotation_new') }}">Create new</a>
-    <button id="button-a" class="btn btn-primary" >Télécherger excel</button>
-    
+    {% if is_granted('ROLE_ADMIN') %}
+    <div class="form-group">
+        <button id="button-a" class="btn btn-primary" >Télécherger excel</button>
+        <form action="{{ path('fos_user_registration_register') }}">
+            <button type="submit" class="btn btn-primary">inscription</button>
+        </form>
+    </div>
+    {% endif %}
+    <form action="{{ path('fos_user_security_logout') }}">
+        <button type="submit" class="btn btn-primary">Deconnexion</button>
+    </form>
 {% endblock %}

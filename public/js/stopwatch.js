@@ -8,6 +8,7 @@ var save = document.querySelector(".save");
 save.disabled = true;
 var startstop = document.getElementById('startstop');
 var reset = document.getElementById('reset');
+reset.disabled = true;
 window.onload = chronoStart;
 function chrono(){
 	end = new Date()
@@ -46,6 +47,7 @@ function chronoContinue(){
 	reset.onclick = chronoReset
 	if(startstop.value == 'stop!'){
 		save.disabled = true;
+		reset.disabled = true;
 	}
 	start = new Date()-diff
 	start = new Date(start)
@@ -65,6 +67,7 @@ function chronoStop(){
 	reset.onclick = chronoStopReset
 	if(startstop.value == 'start!'){
 		save.disabled = false;
+		reset.disabled = false;
 	}
 	clearTimeout(timerID)
 }
