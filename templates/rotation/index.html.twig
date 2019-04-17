@@ -1,12 +1,33 @@
 {% extends 'index.html.twig' %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="../css/style-index.css">
+<link rel="stylesheet" href="../css/style-tableau.css">
+<script src="../js/jquery.js" defer ></script>
+<script src="../js/excel.js" defer ></script>
+<script src="../js/filesaver.js" defer ></script>
+<script src="../js/MakeExcel.js" defer ></script>
 {% endblock %}
 {% block title %}Rotation index{% endblock %}
 
 {% block body %}
     <h1 class="titre" >L'Air des Pichoulis</h1>
+
+    <a href="{{ path('rotation_new') }}"><button>Crée Tache</button></a>
+    {% if is_granted('ROLE_ADMIN') %}
+    <button id="button-a" class="btn btn-primary" >Télécherger excel</button>
+    <form action="{{ path('fos_user_registration_register') }}">
+        <button type="submit" class="btn btn-primary">inscription</button>
+    </form>
+    <form action="/admin">
+        <button type="submit" class="btn btn-primary">Administration</button>
+    </form>
+    {% endif %}
+    
+    <form action="{{ path('fos_user_security_logout') }}">
+        <button type="submit" class="btn btn-primary">Deconnexion</button>
+    </form>
+  
+    
 
     <table id="mytable" class="table table-triped">
         <thead>
@@ -14,10 +35,10 @@
                 <th>Date</th>
                 <th>Temps</th>
                 <th>Zone</th>
-                <th>Serre</th>
+                <th>Sous-zone</th>
                 <th>Planche</th>
                 <th>Legume</th>
-                <th>Variete</th>
+                <th>Variété</th>
                 <th>Tache</th>
                 <th>Choix</th>
                 <th>Quantité</th>
@@ -28,41 +49,44 @@
         <tbody>
         {% for rotation in rotations %}
             <tr>
-                <td>{{ rotation.date ? rotation.date|date('d/m/Y H:i:s') : '' }}</td>
-                <td>{{ rotation.time }}</td>
-                <td>{{ rotation.zone }}</td>
+                <td data-label="Date">{{ rotation.date ? rotation.date|date('d/m/Y H:i:s') : '' }}</td>
+                <td data-label="Temps">{{ rotation.time }}</td>
+                <td data-label="Zone">{{ rotation.zone }}</td>
                 {% if rotation.subarea == null %}
-                <td>x</td>
+                <td data-label="Sous-zone">x</td>
                 {% else %}
-                <td>{{ rotation.subarea }}</td>
+                <td data-label="Sous-zone">{{ rotation.subarea }}</td>
                 {% endif %}
                 {% if rotation.planche == null %}
-                <td>x</td>
+                <tddata-label="Planche">x</td>
                 {% else %}
-                <td>{{ rotation.planche }}</td>
+                <td data-label="Planche">{{ rotation.planche }}</td>
                 {% endif %}
-                <td>{{ rotation.legume }}</td>
-                <td>{{ rotation.variete }}</td>
-                <td>{{ rotation.tache }}</td>
+                <td data-label="Legume">{{ rotation.legume }}</td>
+                <td data-label="Variété">{{ rotation.variete }}</td>
+                <td data-label="Tache">{{ rotation.tache }}</td>
                 {% if rotation.choice == null %}
-                <td>x</td>
+                <td data-label="Choix">x</td>
                 {% else %}
-                <td>{{ rotation.choice }}</td>
+                <td data-label="Choix">{{ rotation.choice }}</td>
                 {% endif %}
                 {% if rotation.amount == null %}
-                <td>x</td>
+                <td data-label="Quantité">x</td>
                 {% else %}
-                <td>{{ rotation.amount }}</td>
+                <td data-label="Quantité">{{ rotation.amount }}</td>
                 {% endif %}
                 {% if rotation.comment == null %}
-                <td>Aucun commentaire</td>
+                <td data-label="Commentaire">Aucun commentaire</td>
                 {% else %}
-                <td>{{ rotation.comment }}</td>
+                <td data-label="Commentaire">{{ rotation.comment }}</td>
                 {% endif %}
-                <td>
-                    <a href="{{ path('rotation_show', {'id': rotation.id}) }}">show</a>
+                <td data-label="Action">
+                    <a href="{{ path('rotation_show', {'id': rotation.id}) }}">Regarder</a>
+                    <a href="{{ path('rotation_new') }}"><button>Crée Tache</button></a>
                 </td>
+                
             </tr>
+            
         {% else %}
             <tr>
                 <td colspan="5">no records found</td>
@@ -70,17 +94,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('rotation_new') }}">Create new</a>
-    {% if is_granted('ROLE_ADMIN') %}
-    <div class="form-group">
-        <button id="button-a" class="btn btn-primary" >Télécherger excel</button>
-        <form action="{{ path('fos_user_registration_register') }}">
-            <button type="submit" class="btn btn-primary">inscription</button>
-        </form>
-    </div>
-    {% endif %}
-    <form action="{{ path('fos_user_security_logout') }}">
-        <button type="submit" class="btn btn-primary">Deconnexion</button>
-    </form>
 {% endblock %}

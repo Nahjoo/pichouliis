@@ -1,6 +1,7 @@
 {% extends 'index.html.twig' %}
 {% block stylesheets %}
-<link rel="stylesheet" href="../public/css/bootstrap.css">
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/style-home.css">
 {% endblock %}
 {% block body %}
 
@@ -8,13 +9,13 @@
     {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
     <h1>Bienvenu dans l'application !</h1>
     <form action="{{ path('rotation_index') }}">
-        <button type="submit">Commencer</button>
+        <button type="submit" class="btn btn-primary">Commencer</button>
     </form>
     {% endif %}
 
     {% if is_granted('ROLE_ADMIN') %}
     <form action="{{ path('fos_user_registration_register') }}">
-        <button type="submit">Inscription</button>
+        <button type="submit" class="btn btn-primary">Inscription</button>
     </form>
     {% endif %}
 
